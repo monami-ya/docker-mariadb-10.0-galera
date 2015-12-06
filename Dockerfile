@@ -13,5 +13,7 @@ RUN LC_ALL=en_US.utf8 DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::=
 
 RUN service mysql restart
 
+EXPOSE 3306
+
 ADD start /bin/start
 RUN chmod +x /bin/start
