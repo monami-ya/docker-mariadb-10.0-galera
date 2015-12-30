@@ -2,9 +2,8 @@
 
 firstrun ()
 {
-
-	cp -rf /var/lib/mysql/* /data/
 	chown mysql -R /data
+	cp -rf /var/lib/mysql/* /data/
 	ZK_CLIENT_PORT=${ZK_CLIENT_PORT:-"2181"}
 }
 
@@ -16,22 +15,22 @@ main() {
 
 	else
 
-		case "$1" in
+		case "$MODE" in
 			new)
 				echo "Starting master"
-				/usr/bin/mysqld_safe --wsrep-new-cluster
+				exec /usr/bin/mysqld_safe --wsrep-new-cluster
 				;;
 			node)
 				echo "Starting node"
-				/usr/bin/mysqld_safe
+				exec /usr/bin/mysqld_safe
 				;;
 			restart_cluster)
 				echo "Restarting cluster."
 				echo "Run this command only on one node"
-				/usr/bin/mysqld_safe --wsrep-cluster-address=gcomm://
+				exec /usr/bin/mysqld_safe --wsrep-cluster-address=gcomm://
 				;;
 			*)
-				echo "start <master|node>"
+				echo "Set envvar to your container <master|node>"
 		esac
 	fi
 }
