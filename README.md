@@ -16,7 +16,7 @@ docker run --name server1-mariadb-config -v /var/configs/mariadb/conf.d:/etc/mys
 
 ##### Make a data container that will be accessible from the host and the container.
 ```
-docker run --name server1-mariadb-config -v /var/data/mariadb:/data busybox true
+docker run --name server1-mariadb-data -v /var/data/mariadb:/data busybox true
                                             ^^^^^^^                      ^^^^^^
                                             Host directory               Container directory
 ```
@@ -32,7 +32,7 @@ docker run --name server2-mariadb-config -v /var/configs/mariadb/conf.d:/etc/mys
 
 ##### Data container
 ```
-docker run --name server2-mariadb-config -v /var/data/mariadb:/data busybox true
+docker run --name server2-mariadb-data -v /var/data/mariadb:/data busybox true
 ```
 
 ### Server3
@@ -43,7 +43,7 @@ docker run --name server3-mariadb-config -v /var/configs/mariadb/conf.d:/etc/mys
 
 ##### Data container
 ```
-docker run --name server3-mariadb-config -v /var/data/mariadb:/data busybox true
+docker run --name server3-mariadb-data -v /var/data/mariadb:/data busybox true
 ```
 
 # 2 - Initial startup
